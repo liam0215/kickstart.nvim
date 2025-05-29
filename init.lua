@@ -429,6 +429,10 @@ require('lazy').setup({
       { 'folke/neodev.nvim', opts = {} },
     },
     config = function()
+      if #vim.api.nvim_list_uis() == 0 then
+        -- Headless (e.g. VimtexInverseSearch); skip Mason altogether
+        return
+      end
       -- Brief aside: **What is LSP?**
       --
       -- LSP is an initialism you've probably heard, but might not understand what it is.
